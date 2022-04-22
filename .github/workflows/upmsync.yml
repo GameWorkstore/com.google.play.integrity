@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      base: https://dl.google.com/games/registry/unity/com.google.external-dependency-manager/com.google.external-dependency-manager
-      version: 1.2.170
+      base: https://dl.google.com/games/registry/unity/com.google.play.integrity/com.google.play.integrity
+      version: 1.0.0
     steps:
       - uses: actions/checkout@v2
       - name: Config
