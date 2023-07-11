@@ -27,7 +27,7 @@ namespace Google.Play.Integrity
         private readonly PlayCoreIntegrityManager _playCoreIntegrityManager;
 
         private const string IntegrityTokenRequestClassName =
-            PlayCoreConstants.PlayCorePackagePrefix + "integrity.IntegrityTokenRequest";
+            PlayCoreConstants.IntegrityPackagePrefix + "IntegrityTokenRequest";
 
         /// <summary>
         /// Constructor.
@@ -50,9 +50,11 @@ namespace Google.Play.Integrity
         /// algorithm. JWS uses <a href="https://tools.ietf.org/html/rfc7518#section-3.4">ES256</a> as a signing
         /// algorithm.
         ///
-        ///<p>All decryption and verification should be done within a secure server environment. Do not decrypt or
+        /// <p>All decryption and verification should be done within a secure server environment. Do not decrypt or
         /// verify the received token from within the client app. In particular, never expose any decryption keys to the
         /// client app.
+        ///
+        /// <p>See https://developer.android.com/google/play/integrity/verdict#token-format.
         /// </summary>
         /// <returns>
         /// A <see cref="PlayAsyncOperation{IntegrityTokenResponse, IntegrityErrorCode}"/> that returns
@@ -66,7 +68,7 @@ namespace Google.Play.Integrity
 
             using (var integrityTokenRequestClass = new AndroidJavaClass(IntegrityTokenRequestClassName))
             using (var integrityTokenRequestBuilder =
-                integrityTokenRequestClass.CallStatic<AndroidJavaObject>("builder"))
+                   integrityTokenRequestClass.CallStatic<AndroidJavaObject>("builder"))
             {
                 integrityTokenRequestBuilder.Call<AndroidJavaObject>("setNonce", integrityTokenRequest.Nonce);
 
